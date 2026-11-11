@@ -1,0 +1,18 @@
+[
+  {"q":"What architecture does Attention Is All You Need propose?","type":"answerable","paper":"1706.03762"},
+  {"q":"What is scaled dot-product attention?","type":"answerable","paper":"1706.03762"},
+  {"q":"What is the base Transformer model dimension?","type":"answerable","paper":"1706.03762"},
+  {"q":"What is multi-head attention used for?","type":"answerable","paper":"1706.03762"},
+  {"q":"What model is Moshi?","type":"answerable","paper":"2410.00037"},
+  {"q":"How does Moshi model the user and model speech streams?","type":"answerable","paper":"2410.00037"},
+  {"q":"What is Moshi Inner Monologue?","type":"answerable","paper":"2410.00037"},
+  {"q":"What latency does Moshi report?","type":"answerable","paper":"2410.00037"},
+  {"q":"What does dynamic chunking learn?","type":"answerable","paper":"2507.07955"},
+  {"q":"What is an H-Net?","type":"answerable","paper":"2507.07955"},
+  {"q":"How does Dynamic Chunking compare byte and BPE models?","type":"answerable","paper":"2507.07955"},
+  {"q":"Which paper presents a full-duplex dialogue model?","type":"answerable","paper":"2410.00037"},
+  {"q":"What is the capital of France?","type":"unanswerable"},
+  {"q":"Who is the current CEO of OpenAI?","type":"unanswerable"},
+  {"q":"How do I configure Django REST Framework?","type":"unanswerable"},
+  {"q":"What are my Groq account limits?","type":"unanswerable"}
+]

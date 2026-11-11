@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-11-11T19:40:11.925180+00:00",
+  "verified_papers": [
+    {
+      "filename": "attention u need.pdf",
+      "title": "Attention Is All You Need",
+      "arxiv_id": "1706.03762",
+      "version": 7,
+      "path": "data/papers/attention u need.pdf",
+      "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "page_count": 15,
+      "first_page_marker": "arXiv:1706.03762v7"
+    },
+    {
+      "filename": "moshi_2410.00037v1.pdf",
+      "title": "Moshi: a speech-text foundation model for real-time dialogue",
+      "arxiv_id": "2410.00037",
+      "version": 1,
+      "path": "data/papers/moshi_2410.00037v1.pdf",
+      "sha256": "a687144cc77bea86b0c60ae800ccb1d3e0816033fa5c7960388fe29a0dbfcfac",
+      "page_count": 66,
+      "first_page_marker": "arXiv:2410.00037v1"
+    },
+    {
+      "filename": "dynamic chunking.pdf",
+      "title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+      "arxiv_id": "2507.07955",
+      "version": 2,
+      "path": "data/papers/dynamic chunking.pdf",
+      "sha256": "04a2b32e6e82853cfc23c5db132750874a86cde99219ec6f664128f4aa83122f",
+      "page_count": 39,
+      "first_page_marker": "arXiv:2507.07955v2"
+    }
+  ],
+  "excluded_files": [
+    {
+      "path": "data/papers/speech text foundation.pdf",
+      "sha256": "ea702589e103f8d02b4fbec733c556b08d136c2ccaa013eb48a91a7366c7e390",
+      "reason": "Supplied file identifies itself as arXiv:2410.00037v2; assignment requires v1.",
+      "first_page_markers": [
+        "arXiv:2410.00037v2"
+      ]
+    }
+  ]
+}

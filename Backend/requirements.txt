@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+httpx
+PyMuPDF==1.24.14
+rank-bm25
+python-dotenv
+pandas
+pytest
