@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import re
+import random
 import time
 import uuid
 from dataclasses import dataclass, field
@@ -31,6 +32,10 @@ class ModelResult:
 
 class ModelClient(Protocol):
     async def generate(self, messages: list[dict[str, str]]) -> ModelResult: ...
+
+
+class DailyProviderBudgetError(RuntimeError):
+    """The provider indicated a day-scale quota reset; retrying cannot help this request."""
 
 
 def normalize_question(question: str) -> str:
@@ -188,15 +193,20 @@ async def run_pipeline(
             break
         except Exception as error:
             status = getattr(error, "status_code", None)
+            headers = getattr(error, "headers", {})
+            error_text = str(error).lower()
+            retry_after = headers.get("retry-after")
+            if status == 429 and ("daily" in error_text or (retry_after and float(retry_after) >= 3600)):
+                raise DailyProviderBudgetError("provider daily budget exhausted") from error
             transient = status == 429 or (isinstance(status, int) and 500 <= status < 600)
             if not transient or retries >= MAX_MODEL_RETRIES:
                 raise
-            retry_after = getattr(error, "headers", {}).get("retry-after")
             try:
                 wait_s = float(retry_after) if retry_after else 0.25 * (2**retries)
             except ValueError:
                 wait_s = 0.25 * (2**retries)
-            await asyncio.sleep(wait_s + (0.05 * retries))
+            # Bounded exponential backoff with jitter avoids synchronized retry storms.
+            await asyncio.sleep(wait_s + random.uniform(0, max(0.01, wait_s * 0.25)))
             retries += 1
     draft = parse_draft(model_result.text)
     if draft is None:

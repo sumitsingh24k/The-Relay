@@ -1,0 +1,110 @@
+[
+  {
+    "raw_row": "176",
+    "old_request_id": "load-http-steady-6",
+    "new_request_id": "load-http-steady-6-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "178",
+    "old_request_id": "load-http-steady-7",
+    "new_request_id": "load-http-steady-7-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "179",
+    "old_request_id": "load-http-steady-8",
+    "new_request_id": "load-http-steady-8-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "209",
+    "old_request_id": "load-http-burst-9",
+    "new_request_id": "load-http-burst-9-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "210",
+    "old_request_id": "load-http-burst-0",
+    "new_request_id": "load-http-burst-0-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "211",
+    "old_request_id": "load-http-burst-1",
+    "new_request_id": "load-http-burst-1-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "212",
+    "old_request_id": "load-http-burst-2",
+    "new_request_id": "load-http-burst-2-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "213",
+    "old_request_id": "load-http-burst-3",
+    "new_request_id": "load-http-burst-3-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "214",
+    "old_request_id": "load-http-burst-4",
+    "new_request_id": "load-http-burst-4-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "215",
+    "old_request_id": "load-http-burst-5",
+    "new_request_id": "load-http-burst-5-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "251",
+    "old_request_id": "load-http-rpm_halved-6",
+    "new_request_id": "load-http-rpm_halved-6-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "252",
+    "old_request_id": "load-http-rpm_halved-7",
+    "new_request_id": "load-http-rpm_halved-7-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "253",
+    "old_request_id": "load-http-rpm_halved-8",
+    "new_request_id": "load-http-rpm_halved-8-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "254",
+    "old_request_id": "load-http-rpm_halved-9",
+    "new_request_id": "load-http-rpm_halved-9-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "258",
+    "old_request_id": "load-http-daily_budget_exhausted-6",
+    "new_request_id": "load-http-daily_budget_exhausted-6-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "260",
+    "old_request_id": "load-http-daily_budget_exhausted-2",
+    "new_request_id": "load-http-daily_budget_exhausted-2-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "262",
+    "old_request_id": "load-http-daily_budget_exhausted-1",
+    "new_request_id": "load-http-daily_budget_exhausted-1-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  },
+  {
+    "raw_row": "264",
+    "old_request_id": "load-http-daily_budget_exhausted-0",
+    "new_request_id": "load-http-daily_budget_exhausted-0-duplicate-2",
+    "reason": "raw log re-used an id across separate load-driver attempts"
+  }
+]

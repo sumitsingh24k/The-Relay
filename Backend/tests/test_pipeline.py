@@ -43,6 +43,13 @@ def test_title_aware_query_retrieval_grounds_a_generic_transformer_question():
     assert any(result["arxiv_id"] == "1706.03762" and result["pdf_page"] in {1, 2} for result in results)
 
 
+def test_transformer_dimension_query_does_not_expand_to_moshi_from_generic_model_word():
+    retriever = BM25Retriever(build_chunks(chunk_size=500, overlap=75))
+    results = retriever.retrieve_passages("What is the base Transformer model dimension?", "C-medium-expanded")
+    assert results
+    assert all(result["arxiv_id"] == "1706.03762" for result in results)
+
+
 class FakeClient:
     def __init__(self, payload):
         self.payload = payload

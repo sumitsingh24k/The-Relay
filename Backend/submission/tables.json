@@ -1,0 +1,89 @@
+{
+  "burst": {
+    "total_requests": 25,
+    "successful_requests": 10,
+    "failed_requests": 15,
+    "average_response_ms": 1372.12,
+    "p50_ms": 1433.13,
+    "p95_ms": 1549.11,
+    "p99_ms": null,
+    "ttft_p50_ms": null,
+    "retry_count": 0,
+    "rate_limit_events": 15,
+    "queue_length": null,
+    "status_distribution": {
+      "rate_limited": 15,
+      "ok": 10
+    }
+  },
+  "daily_budget_exhausted": {
+    "total_requests": 34,
+    "successful_requests": 20,
+    "failed_requests": 14,
+    "average_response_ms": 494.38,
+    "p50_ms": 38.59,
+    "p95_ms": 1773.33,
+    "p99_ms": null,
+    "ttft_p50_ms": 37.1,
+    "retry_count": 0,
+    "rate_limit_events": 7,
+    "queue_length": null,
+    "status_distribution": {
+      "rate_limited": 7,
+      "error": 7,
+      "ok": 20
+    }
+  },
+  "rpm_halved": {
+    "total_requests": 26,
+    "successful_requests": 10,
+    "failed_requests": 16,
+    "average_response_ms": 509.11,
+    "p50_ms": 807.97,
+    "p95_ms": 831.94,
+    "p99_ms": null,
+    "ttft_p50_ms": 46.64,
+    "retry_count": 0,
+    "rate_limit_events": 12,
+    "queue_length": null,
+    "status_distribution": {
+      "rate_limited": 12,
+      "error": 4,
+      "ok": 10
+    }
+  },
+  "steady": {
+    "total_requests": 17,
+    "successful_requests": 4,
+    "failed_requests": 13,
+    "average_response_ms": 828.84,
+    "p50_ms": 825.81,
+    "p95_ms": 861.11,
+    "p99_ms": null,
+    "ttft_p50_ms": null,
+    "retry_count": 0,
+    "rate_limit_events": 13,
+    "queue_length": null,
+    "status_distribution": {
+      "rate_limited": 13,
+      "ok": 4
+    }
+  },
+  "sustained_overload": {
+    "total_requests": 127,
+    "successful_requests": 13,
+    "failed_requests": 114,
+    "average_response_ms": 1006.35,
+    "p50_ms": 963.24,
+    "p95_ms": 1204.02,
+    "p99_ms": null,
+    "ttft_p50_ms": null,
+    "retry_count": 0,
+    "rate_limit_events": 114,
+    "queue_length": null,
+    "status_distribution": {
+      "rate_limited": 114,
+      "ok": 13
+    }
+  }
+}

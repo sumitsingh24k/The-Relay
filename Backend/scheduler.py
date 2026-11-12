@@ -5,7 +5,11 @@ from __future__ import annotations
 import asyncio
 import random
 import time
+import json
+import os
+from datetime import date
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Awaitable, Callable
 
 
@@ -47,6 +51,34 @@ class Scheduler:
         self._daily_tokens = 0
         self.peak_queue_length = 0
         self._workers: list[asyncio.Task] = []
+        self._quota_path = Path(__file__).with_name("quota_state.json")
+        self._quota_date = date.today().isoformat()
+        # Isolated test/custom scheduler instances must not inherit production counters.
+        self._persist = config == SchedulerConfig()
+        if self._persist:
+            self._load_daily_state()
+
+    def _load_daily_state(self) -> None:
+        """Persist only daily counters; minute/RPM state must never survive a restart."""
+        try:
+            saved = json.loads(self._quota_path.read_text(encoding="utf-8"))
+        except (FileNotFoundError, json.JSONDecodeError):
+            return
+        if saved.get("date") == self._quota_date:
+            self._daily_requests = int(saved.get("requests", 0))
+            self._daily_tokens = int(saved.get("tokens", 0))
+
+    def _save_daily_state(self) -> None:
+        if not self._persist:
+            return
+        self._quota_path.write_text(json.dumps({"date": self._quota_date, "requests": self._daily_requests,
+            "tokens": self._daily_tokens}, indent=2) + "\n", encoding="utf-8")
+
+    def _roll_day_if_needed(self) -> None:
+        today = date.today().isoformat()
+        if today != self._quota_date:
+            self._quota_date, self._daily_requests, self._daily_tokens = today, 0, 0
+            self._save_daily_state()
 
     async def start(self) -> None:
         if not self._workers:
@@ -95,6 +127,7 @@ class Scheduler:
         if time.monotonic() >= deadline_monotonic:
             raise AdmissionError("deadline", "request expired before admission")
         async with self._lock:
+            self._roll_day_if_needed()
             now = time.monotonic()
             if now - self._minute_start >= 60:
                 self._minute_start, self._requests_this_minute, self._tokens_this_minute = now, 0, 0
@@ -106,6 +139,7 @@ class Scheduler:
             self._tokens_this_minute += estimated_tokens
             self._daily_requests += 1
             self._daily_tokens += estimated_tokens
+            self._save_daily_state()
 
     async def enqueue(self, item: object, deadline_monotonic: float) -> None:
         if self.queue.full():
@@ -135,8 +169,21 @@ class Scheduler:
 
     def mode(self) -> str:
         """Normal: full pipeline; pressured: cheap safe path; budget_gone: retrieval-only."""
+        self._roll_day_if_needed()
         if self._daily_requests >= self.config.daily_requests or self._daily_tokens >= self.config.daily_tokens:
             return "budget_gone"
         if self.queue.qsize() / self.config.max_queue >= 0.7 or self._requests_this_minute / self.config.rpm >= 0.7:
             return "pressured"
         return "normal"
+
+
+def config_from_env() -> SchedulerConfig:
+    """Allow repeatable test deployments without changing production source defaults."""
+    defaults = SchedulerConfig()
+    return SchedulerConfig(
+        rpm=int(os.getenv("RELAY_RPM", defaults.rpm)), tpm=int(os.getenv("RELAY_TPM", defaults.tpm)),
+        daily_requests=int(os.getenv("RELAY_DAILY_REQUESTS", defaults.daily_requests)),
+        daily_tokens=int(os.getenv("RELAY_DAILY_TOKENS", defaults.daily_tokens)),
+        max_queue=int(os.getenv("RELAY_MAX_QUEUE", defaults.max_queue)), max_concurrency=int(os.getenv("RELAY_MAX_CONCURRENCY", defaults.max_concurrency)),
+        max_retries=int(os.getenv("RELAY_MAX_RETRIES", defaults.max_retries)), base_backoff_s=float(os.getenv("RELAY_BACKOFF_S", defaults.base_backoff_s)),
+    )

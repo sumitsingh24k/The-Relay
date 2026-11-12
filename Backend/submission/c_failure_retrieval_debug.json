@@ -1,0 +1,322 @@
+[
+  {
+    "question": "What is the base Transformer model dimension?",
+    "query_tokens": [
+      "base",
+      "transformer",
+      "model",
+      "dimension",
+      "attention",
+      "all",
+      "you",
+      "need"
+    ],
+    "bm25_top_8": [
+      {
+        "chunk_id": "1706_03762_v7_p01_c01",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 1,
+        "section": "Unsectioned",
+        "score": 11.829278,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "1706_03762_v7_p09_c04",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 9,
+        "section": "6.3\nEnglish Constituency Parsing",
+        "score": 10.517586,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2410_00037_v1_p51_c02",
+        "paper_title": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 51,
+        "section": "14\nShu-Wen Yang, Po-Han Chi, Yung-Sung Chuang, Cheng-I Jeff Lai, Kushal Lakhotia,",
+        "score": 9.771218,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "1706_03762_v7_p03_c01",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 3,
+        "section": "3.2\nAttention",
+        "score": 9.676675,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p37_c04",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 37,
+        "section": "2.95\nPerplexity on HG38",
+        "score": 9.515005,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "1706_03762_v7_p05_c01",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 5,
+        "section": "3.4\nEmbeddings and Softmax",
+        "score": 9.254452,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "1706_03762_v7_p04_c01",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention",
+        "score": 9.225309,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "1706_03762_v7_p08_c02",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 8,
+        "section": "6.2\nModel Variations",
+        "score": 9.007669,
+        "semantic_score": null
+      }
+    ],
+    "semantic_top_4": [
+      {
+        "chunk_id": "1706_03762_v7_p03_c01",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 3,
+        "section": "3.2\nAttention",
+        "score": 9.676675,
+        "semantic_score": 0.374681
+      },
+      {
+        "chunk_id": "1706_03762_v7_p05_c01",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 5,
+        "section": "3.4\nEmbeddings and Softmax",
+        "score": 9.254452,
+        "semantic_score": 0.343311
+      },
+      {
+        "chunk_id": "1706_03762_v7_p08_c02",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 8,
+        "section": "6.2\nModel Variations",
+        "score": 9.007669,
+        "semantic_score": 0.302202
+      },
+      {
+        "chunk_id": "1706_03762_v7_p09_c04",
+        "paper_title": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 9,
+        "section": "6.3\nEnglish Constituency Parsing",
+        "score": 10.517586,
+        "semantic_score": 0.288257
+      }
+    ],
+    "question_number": 3,
+    "model_result": {
+      "answer": "4096",
+      "citations": [
+        {
+          "chunk_id": "2410_00037_v1_p08_c01",
+          "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+          "arxiv_id": "2410.00037",
+          "version": 1,
+          "pdf_page": 8,
+          "section": "6. http://www.isthe.com/chongo/tech/comp/fnv"
+        }
+      ],
+      "claims": [
+        {
+          "text": "The Temporal Transformer used in the Helium language model has a model dimension of 4096.",
+          "source_ids": [
+            "2410_00037_v1_p08_c01"
+          ]
+        }
+      ],
+      "refused": false,
+      "verification": {
+        "citation_integrity": true,
+        "claim_support": true,
+        "reason": "ok"
+      },
+      "timing_ms": {
+        "model_ttft": 892.659,
+        "user_visible_ttft": 1080.055,
+        "total": 1080.055,
+        "model_total": 954.927
+      }
+    }
+  },
+  {
+    "question": "What is an H-Net?",
+    "query_tokens": [
+      "h",
+      "net"
+    ],
+    "bm25_top_8": [
+      {
+        "chunk_id": "2507_07955_v2_p12_c03",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 12,
+        "section": "3.1\nLanguage Modeling",
+        "score": 4.759129,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p17_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 17,
+        "section": "3.3\nAblation Studies",
+        "score": 4.698267,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p16_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 16,
+        "section": "0.44\nCode (Pile Github)",
+        "score": 4.647764,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p37_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 37,
+        "section": "2.95\nPerplexity on HG38",
+        "score": 4.640479,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p11_c02",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 11,
+        "section": "1024 , 1536 , 2048",
+        "score": 4.59578,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p20_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 20,
+        "section": "1.00\n1.05",
+        "score": 4.585858,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p13_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 13,
+        "section": "44.0\n58.2",
+        "score": 4.479869,
+        "semantic_score": null
+      },
+      {
+        "chunk_id": "2507_07955_v2_p17_c02",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 17,
+        "section": "3.3\nAblation Studies",
+        "score": 4.465532,
+        "semantic_score": null
+      }
+    ],
+    "semantic_top_4": [
+      {
+        "chunk_id": "2507_07955_v2_p16_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 16,
+        "section": "0.44\nCode (Pile Github)",
+        "score": 4.647764,
+        "semantic_score": 0.383994
+      },
+      {
+        "chunk_id": "2507_07955_v2_p12_c03",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 12,
+        "section": "3.1\nLanguage Modeling",
+        "score": 4.759129,
+        "semantic_score": 0.345927
+      },
+      {
+        "chunk_id": "2507_07955_v2_p20_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 20,
+        "section": "1.00\n1.05",
+        "score": 4.585858,
+        "semantic_score": 0.345382
+      },
+      {
+        "chunk_id": "2507_07955_v2_p17_c01",
+        "paper_title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 17,
+        "section": "3.3\nAblation Studies",
+        "score": 4.698267,
+        "semantic_score": 0.334744
+      }
+    ],
+    "question_number": 10,
+    "model_result": {
+      "answer": "I cannot verify an answer from the approved papers: model response was not valid structured grounded output",
+      "citations": [],
+      "claims": [],
+      "refused": true,
+      "verification": {
+        "citation_integrity": true,
+        "claim_support": true,
+        "reason": "model response was not valid structured grounded output"
+      },
+      "timing_ms": {
+        "model_ttft": 1071.062,
+        "user_visible_ttft": null,
+        "total": 1644.171,
+        "model_total": 1478.376
+      }
+    }
+  }
+]

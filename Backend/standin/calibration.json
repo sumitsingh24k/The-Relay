@@ -1,0 +1,24 @@
+{
+  "calibrated_at": "2026-11-12T05:06:23.105800+00:00",
+  "sample_count": 8,
+  "source": "measurements/groq_baseline.jsonl",
+  "observed": {
+    "model_ttft_ms_p50": 678.111,
+    "model_ttft_ms_p95": 732.107,
+    "total_ms_p50": 689.121,
+    "total_ms_p95": 742.993,
+    "output_tokens_median": 77.0
+  },
+  "standin": {
+    "base_delay_ms": 639.141,
+    "token_delay_ms": 1.0,
+    "failure_rate": 0.0,
+    "load_slowdown_factor": 0.25,
+    "note": "Failure rate is zero because no real transient failure was observed in the baseline; do not infer it."
+  },
+  "unavailable": [
+    "RPM exact account limit",
+    "TPD exact account limit",
+    "observed real 429 recovery"
+  ]
+}

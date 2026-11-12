@@ -1,0 +1,1156 @@
+[
+  {
+    "request_id": "req-2bb75a92a7b1",
+    "question_number": 1,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What architecture does Attention Is All You Need propose?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Transformer answer is supported by Attention Is All You Need p.1.",
+    "answer": "The paper proposes the Transformer architecture, a model that relies solely on attention mechanisms and eliminates recurrence and convolutions.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p01_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 1,
+        "section": "Unsectioned"
+      }
+    ]
+  },
+  {
+    "request_id": "req-f766693da1c1",
+    "question_number": 1,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What architecture does Attention Is All You Need propose?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Transformer answer is supported by Attention p.2.",
+    "answer": "Attention Is All You Need proposes the Transformer architecture, a model that relies solely on attention mechanisms and dispenses with recurrence and convolutions.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p02_c02",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 2,
+        "section": "3\nModel Architecture"
+      }
+    ]
+  },
+  {
+    "request_id": "req-b0de46e83a26",
+    "question_number": 1,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What architecture does Attention Is All You Need propose?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Transformer architecture answer and cited Attention pages support the claim.",
+    "answer": "The paper proposes the Transformer architecture, a model that relies solely on attention mechanisms and dispenses with recurrence and convolutions.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p02_c02",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 2,
+        "section": "3\nModel Architecture"
+      },
+      {
+        "chunk_id": "1706_03762_v7_p01_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 1,
+        "section": "Unsectioned"
+      }
+    ]
+  },
+  {
+    "request_id": "req-9a062d3dcd75",
+    "question_number": 2,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What is scaled dot-product attention?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Formula and explanation match Attention p.4.",
+    "answer": "Scaled dot\u2011product attention is an attention mechanism that takes queries, keys and values, computes the dot product of each query with all keys, scales the result by 1/\u221adk, applies a softmax to obtain attention weights, and then forms a weighted sum of the values. The operation can be written as Attention(Q,K,V)=softmax(QK\u1d40/\u221adk)V. The scaling factor is used to keep the dot\u2011product magnitudes in a range where the softmax has useful gradients, especially when dk is large.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p04_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention"
+      },
+      {
+        "chunk_id": "1706_03762_v7_p04_c02",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention"
+      }
+    ]
+  },
+  {
+    "request_id": "req-e9e3323f0353",
+    "question_number": 3,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What is the base Transformer model dimension?",
+    "expected_paper": "1706.03762",
+    "grade": "wrong",
+    "reviewer_explanation": "It gives Moshi's 4096 rather than the Transformer base dimension and cites the wrong paper.",
+    "answer": "The base Transformer model dimension used in Moshi is 4096.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p08_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 8,
+        "section": "6. http://www.isthe.com/chongo/tech/comp/fnv"
+      }
+    ]
+  },
+  {
+    "request_id": "req-b9fbe586b589",
+    "question_number": 4,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What is multi-head attention used for?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Use of multi-head attention is supported by Attention p.5.",
+    "answer": "Multi\u2011head attention is used to let the model jointly attend to information from different representation subspaces at different positions, thereby capturing diverse relationships that a single head would average out. In the Transformer it is employed in three places: encoder\u2011decoder attention (queries from the decoder attend over encoder outputs), encoder self\u2011attention (each encoder position attends over all encoder positions), and decoder self\u2011attention (each decoder position attends over all decoder positions).",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p05_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 5,
+        "section": "3.4\nEmbeddings and Softmax"
+      }
+    ]
+  },
+  {
+    "request_id": "req-250a0d195ec3",
+    "question_number": 5,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What model is Moshi?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Moshi definition is supported by Moshi p.1/p.6.",
+    "answer": "Moshi is a speech\u2011text foundation model designed for real\u2011time spoken dialogue.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p01_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      }
+    ]
+  },
+  {
+    "request_id": "req-646f10bb8aeb",
+    "question_number": 6,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "How does Moshi model the user and model speech streams?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Parallel-stream description is supported by Moshi p.6.",
+    "answer": "Moshi treats the user\u2019s speech and its own speech as two parallel, full\u2011duplex streams of semantic and acoustic tokens.  The model first predicts time\u2011aligned text tokens as a prefix, then generates the corresponding acoustic tokens for each stream.  This hierarchical, multi\u2011stream Transformer architecture lets Moshi model both linguistic and non\u2011linguistic information in real time without relying on explicit speaker\u2011turn segmentation.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p06_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      }
+    ]
+  },
+  {
+    "request_id": "req-5a99ad0cdd6a",
+    "question_number": 7,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What is Moshi Inner Monologue?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Inner Monologue description is supported by Moshi p.6.",
+    "answer": "Moshi\u2019s Inner\u202fMonologue is a technique that first predicts time\u2011aligned text tokens as a prefix to the audio tokens it generates.  By doing so, it improves the linguistic quality of the speech output and enables the model to perform streaming speech\u2011recognition and text\u2011to\u2011speech in real time.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p01_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      }
+    ]
+  },
+  {
+    "request_id": "req-44b0d3541329",
+    "question_number": 8,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What latency does Moshi report?",
+    "expected_paper": "2410.00037",
+    "grade": "wrong",
+    "reviewer_explanation": "This answerable Moshi latency question was refused despite relevant paper evidence.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-d58fd143cee9",
+    "question_number": 9,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What does dynamic chunking learn?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Learned dynamic segmentation is supported by Dynamic Chunking p.1/p.2.",
+    "answer": "Dynamic chunking learns content\u2011 and context\u2011dependent segmentation strategies that compress raw data into meaningful chunks, automatically discovering semantically coherent boundaries end\u2011to\u2011end without explicit tokenization heuristics.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p01_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 1,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p02_c02",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 2,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p04_c02",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 4,
+        "section": "2.1.1\nComponents of H-Net"
+      }
+    ]
+  },
+  {
+    "request_id": "req-05bf7c2ecb95",
+    "question_number": 10,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What is an H-Net?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "H-Net description is supported by cited Dynamic Chunking passages.",
+    "answer": "An H\u2011Net is a hierarchical neural network architecture that processes sequences by dynamically chunking the input into multiple stages. It uses a main network (e.g., a Transformer or Mamba\u20112) together with outer stages that compress the sequence, allowing the model to learn a learnable chunking strategy that improves scaling and performance over token\u2011level baselines.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p12_c03",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 12,
+        "section": "3.1\nLanguage Modeling"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p17_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 17,
+        "section": "3.3\nAblation Studies"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p37_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 37,
+        "section": "2.95\nPerplexity on HG38"
+      }
+    ]
+  },
+  {
+    "request_id": "req-6e7fc0756486",
+    "question_number": 11,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "How does Dynamic Chunking compare byte and BPE models?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Byte versus BPE comparison is supported by Dynamic Chunking p.1/p.3.",
+    "answer": "Dynamic Chunking enables a byte\u2011level hierarchical model that, when compute\u2011 and data\u2011matched, matches or even surpasses a strong BPE\u2011tokenized Transformer. A single\u2011stage H\u2011Net operating on raw bytes achieves perplexity and downstream performance comparable to a BPE\u2011tokenized Transformer with more than 1\u202fB parameters, and the learned chunking compresses the input to roughly 4.5\u20135\u202fbytes per chunk\u2014similar to the tokenization granularity of BPE. Adding more hierarchy stages further improves performance and scaling.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p01_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 1,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p03_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 3,
+        "section": "1 \u2212'!\"$"
+      }
+    ]
+  },
+  {
+    "request_id": "req-71fccad9b823",
+    "question_number": 12,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "Which paper presents a full-duplex dialogue model?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Correctly identifies Moshi as the full-duplex dialogue paper.",
+    "answer": "The paper \"Moshi: a speech\u2011text foundation model for real\u2011time dialogue\" (arXiv:2410.00037v1) presents a full\u2011duplex dialogue model.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p06_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      }
+    ]
+  },
+  {
+    "request_id": "req-62db06fcae25",
+    "question_number": 13,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What is the capital of France?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Capital of France is outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-05afb9528774",
+    "question_number": 14,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "Who is the current CEO of OpenAI?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Current CEO is outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-f023564880bf",
+    "question_number": 15,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "How do I configure Django REST Framework?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Django configuration is outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-a748a6ecc05e",
+    "question_number": 16,
+    "retrieval_setting": "A-small",
+    "source": "groq",
+    "question": "What are my Groq account limits?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Personal Groq limits are outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-6204b4a10b21",
+    "question_number": 2,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What is scaled dot-product attention?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Scaled dot-product description is supported by Attention p.4.",
+    "answer": "Scaled dot\u2011product attention is an attention mechanism that computes the dot product between each query and all keys, divides each result by the square root of the key dimension (\u221adk) to prevent large values, applies a softmax to obtain attention weights, and then takes a weighted sum of the corresponding values.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p04_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention"
+      },
+      {
+        "chunk_id": "1706_03762_v7_p04_c02",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention"
+      }
+    ]
+  },
+  {
+    "request_id": "req-216da6e2b1ad",
+    "question_number": 3,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What is the base Transformer model dimension?",
+    "expected_paper": "1706.03762",
+    "grade": "wrong",
+    "reviewer_explanation": "It gives Moshi's 4096 rather than the Transformer base dimension and cites the wrong paper.",
+    "answer": "4096",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p08_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 8,
+        "section": "6. http://www.isthe.com/chongo/tech/comp/fnv"
+      }
+    ]
+  },
+  {
+    "request_id": "req-88c68b44448c",
+    "question_number": 4,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What is multi-head attention used for?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Multi-head attention use is supported by Attention p.3/p.5.",
+    "answer": "Multi\u2011head attention is used to let the model attend to information from multiple representation sub\u2011spaces at the same time, enabling richer, more expressive representations.  In the Transformer it is applied in three places: as the multi\u2011head self\u2011attention in each encoder layer, as the multi\u2011head self\u2011attention in each decoder layer, and as the multi\u2011head encoder\u2011decoder attention that lets the decoder attend to the encoder\u2019s output.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p05_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 5,
+        "section": "3.4\nEmbeddings and Softmax"
+      },
+      {
+        "chunk_id": "1706_03762_v7_p03_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 3,
+        "section": "3.2\nAttention"
+      }
+    ]
+  },
+  {
+    "request_id": "req-a7e6cfb24ca7",
+    "question_number": 5,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What model is Moshi?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Moshi definition is supported by cited Moshi p.1.",
+    "answer": "Moshi is a speech\u2011text foundation model designed for real\u2011time, full\u2011duplex spoken dialogue.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p01_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p01_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      }
+    ]
+  },
+  {
+    "request_id": "req-46124990712d",
+    "question_number": 6,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "How does Moshi model the user and model speech streams?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Parallel-stream account is supported by cited Moshi passages.",
+    "answer": "Moshi treats the user\u2019s voice and its own voice as two parallel streams of tokens. Each stream is encoded with the Mimi neural audio codec, which fuses semantic and acoustic information via residual vector quantization. The model then generates tokens hierarchically: first a time\u2011aligned text prefix (the Inner Monologue), followed by acoustic tokens. Both streams are processed jointly in a multi\u2011stream architecture, enabling Moshi to listen and speak simultaneously without explicit speaker\u2011turn segmentation.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p06_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p01_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p07_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 7,
+        "section": "3.2.2 Pre-training data filtering"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      }
+    ]
+  },
+  {
+    "request_id": "req-cb91230c991c",
+    "question_number": 7,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What is Moshi Inner Monologue?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Inner Monologue account is supported by cited Moshi passages.",
+    "answer": "Moshi Inner Monologue is a training and inference strategy that jointly models text and audio tokens, generating time\u2011aligned text tokens as a prefix to audio tokens and producing speech on a per\u2011frame basis. This approach improves the linguistic quality of Moshi\u2019s speech and allows the same model to be used for streaming speech recognition and text\u2011to\u2011speech.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p07_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 7,
+        "section": "3.2.2 Pre-training data filtering"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p05_c03",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 5,
+        "section": "2 Related Work"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p01_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      }
+    ]
+  },
+  {
+    "request_id": "req-76f5b8ca5536",
+    "question_number": 8,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What latency does Moshi report?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Moshi p.2 supports the reported theoretical 160 ms latency.",
+    "answer": "Moshi reports a theoretical latency of 160\u202fms.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p02_c03",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 2,
+        "section": "4. https://openai.com/index/chatgpt-can-now-see-hear-and-speak/"
+      }
+    ]
+  },
+  {
+    "request_id": "req-547aefadb728",
+    "question_number": 9,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What does dynamic chunking learn?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Dynamic segmentation account is supported by cited Dynamic Chunking passages.",
+    "answer": "Dynamic chunking learns content\u2011 and context\u2011dependent segmentation strategies\u2014i.e., it learns how to split raw data into variable\u2011length chunks based on the data\u2019s content and surrounding context, and it does so end\u2011to\u2011end with the rest of the model.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p01_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 1,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p23_c05",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 23,
+        "section": "5\nConclusion"
+      }
+    ]
+  },
+  {
+    "request_id": "req-ebf5b9b37861",
+    "question_number": 10,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What is an H-Net?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "H-Net description is supported by cited Dynamic Chunking passages.",
+    "answer": "An H\u2011Net is a hierarchical neural architecture that learns to chunk raw byte sequences in a data\u2011dependent way. It uses one or more dynamic\u2011chunking stages (e.g., 1\u2011stage or 2\u2011stage) to build a nested representation of the input, allowing it to operate on raw data without handcrafted tokenization and to improve over static heuristics.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p12_c03",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 12,
+        "section": "3.1\nLanguage Modeling"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p16_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 16,
+        "section": "0.44\nCode (Pile Github)"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p17_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 17,
+        "section": "3.3\nAblation Studies"
+      }
+    ]
+  },
+  {
+    "request_id": "req-34b0d270c25d",
+    "question_number": 11,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "How does Dynamic Chunking compare byte and BPE models?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Byte versus BPE comparison is supported by Dynamic Chunking p.1.",
+    "answer": "Dynamic Chunking (H\u2011Net) outperforms a strong Transformer language model that uses BPE tokens when both models are matched for compute and data. In particular, a one\u2011stage H\u2011Net operating at the byte level achieves higher performance than the BPE\u2011tokenized Transformer, and adding more hierarchical stages further improves results.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p01_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 1,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      }
+    ]
+  },
+  {
+    "request_id": "req-51fb21adbabb",
+    "question_number": 12,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "Which paper presents a full-duplex dialogue model?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Correctly identifies Moshi as the full-duplex dialogue paper.",
+    "answer": "The paper \"Moshi: a speech\u2011text foundation model for real\u2011time dialogue\" presents a full\u2011duplex dialogue model.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p01_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p01_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      }
+    ]
+  },
+  {
+    "request_id": "req-d76f16d728cf",
+    "question_number": 13,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What is the capital of France?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Capital of France is outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-fc70b1e66e20",
+    "question_number": 14,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "Who is the current CEO of OpenAI?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Current CEO is outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-2dbfb286367d",
+    "question_number": 15,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "How do I configure Django REST Framework?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Django configuration is outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-e7a5ef96fb14",
+    "question_number": 16,
+    "retrieval_setting": "B-medium",
+    "source": "groq",
+    "question": "What are my Groq account limits?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Personal Groq limits are outside the three-paper corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-46b0c8005ddd",
+    "question_number": 2,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What is scaled dot-product attention?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Scaled dot-product attention answer is supported by Attention p.4.",
+    "answer": "Scaled dot\u2011product attention is an attention mechanism that computes the dot product of queries and keys, scales the result by 1/\u221adk, applies a softmax to obtain attention weights, and then multiplies these weights by the values to produce the output. It is the core operation used in multi\u2011head attention.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p04_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention"
+      },
+      {
+        "chunk_id": "1706_03762_v7_p04_c02",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention"
+      }
+    ]
+  },
+  {
+    "request_id": "req-b8aa4220d000",
+    "question_number": 3,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What is the base Transformer model dimension?",
+    "expected_paper": "1706.03762",
+    "grade": "wrong",
+    "reviewer_explanation": "Question asks Transformer base dimension; answer 4096 cites Moshi rather than the required Transformer evidence.",
+    "answer": "4096",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p08_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 8,
+        "section": "6. http://www.isthe.com/chongo/tech/comp/fnv"
+      }
+    ]
+  },
+  {
+    "request_id": "req-3edaa8a1da85",
+    "question_number": 4,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What is multi-head attention used for?",
+    "expected_paper": "1706.03762",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Multi-head attention explanation and Attention citations are relevant.",
+    "answer": "Multi\u2011head attention lets the Transformer attend to information from multiple representation sub\u2011spaces at different positions simultaneously.  By running several attention heads in parallel, each head can focus on a different aspect of the input, and the concatenated outputs are projected back to the model dimension.  This mechanism is used in the encoder\u2019s self\u2011attention layers, the decoder\u2019s self\u2011attention layers, and the encoder\u2011decoder attention layers, enabling the model to capture diverse relationships across the sequence while keeping the computational cost comparable to single\u2011head attention.",
+    "citations": [
+      {
+        "chunk_id": "1706_03762_v7_p05_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 5,
+        "section": "3.4\nEmbeddings and Softmax"
+      },
+      {
+        "chunk_id": "1706_03762_v7_p04_c01",
+        "paper": "Attention Is All You Need",
+        "arxiv_id": "1706.03762",
+        "version": 7,
+        "pdf_page": 4,
+        "section": "3.2.2\nMulti-Head Attention"
+      }
+    ]
+  },
+  {
+    "request_id": "req-da2aacb09ee7",
+    "question_number": 5,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What model is Moshi?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Moshi model description is grounded in Moshi citations.",
+    "answer": "Moshi is a speech\u2011text foundation model that enables real\u2011time, full\u2011duplex spoken dialogue. It is built on a text\u2011language\u2011model backbone (Helium) and uses a neural audio codec (Mimi) to generate and listen to speech simultaneously, allowing it to model user and system speech in parallel streams.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p01_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p07_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 7,
+        "section": "3.2.2 Pre-training data filtering"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p01_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      }
+    ]
+  },
+  {
+    "request_id": "req-4537d9843284",
+    "question_number": 6,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "How does Moshi model the user and model speech streams?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Parallel user/model speech stream answer is cited to Moshi.",
+    "answer": "Moshi models the user and the system (Moshi) speech as two separate, parallel streams of tokens.  For each stream it generates a hierarchy of semantic tokens followed by acoustic tokens using its neural audio codec (Mimi).  The model streams these tokens in real\u2011time, allowing Moshi to listen and speak simultaneously without explicit turn segmentation.  When using the Inner Monologue training scheme, Moshi also produces time\u2011aligned text tokens for its own speech, jointly modeling text and audio tokens to leverage the knowledge of its Helium text backbone.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p06_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p06_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 6,
+        "section": "3.1 Overview"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p07_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 7,
+        "section": "3.2.2 Pre-training data filtering"
+      }
+    ]
+  },
+  {
+    "request_id": "req-c89f2749c680",
+    "question_number": 7,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What is Moshi Inner Monologue?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Inner Monologue explanation is grounded in Moshi citations.",
+    "answer": "Moshi Inner Monologue is a training and inference procedure that jointly models text and audio tokens. It decomposes speech on a per\u2011frame basis so that each prediction step outputs a single speech frame, and when combined with a delay between token types it enables the derivation of streaming text\u2011to\u2011speech and automatic speech recognition systems from Moshi.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p07_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 7,
+        "section": "3.2.2 Pre-training data filtering"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p05_c03",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 5,
+        "section": "2 Related Work"
+      }
+    ]
+  },
+  {
+    "request_id": "req-4705fa9d8c23",
+    "question_number": 8,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What latency does Moshi report?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Reported 240 ms latency is cited to Moshi.",
+    "answer": "Moshi reports a latency of 240\u202fms.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p26_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 26,
+        "section": "5.4 Audio language modeling"
+      }
+    ]
+  },
+  {
+    "request_id": "req-a068fc42bc15",
+    "question_number": 9,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What does dynamic chunking learn?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Dynamic Chunking objective is supported by cited paper passages.",
+    "answer": "Dynamic chunking learns content\u2011 and context\u2011dependent segmentation strategies that compress raw data, and it learns these boundaries end\u2011to\u2011end jointly with the rest of the model.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p01_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 1,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      },
+      {
+        "chunk_id": "2507_07955_v2_p02_c02",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 2,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      }
+    ]
+  },
+  {
+    "request_id": "req-9141c68349df",
+    "question_number": 10,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What is an H-Net?",
+    "expected_paper": "2507.07955",
+    "grade": "wrong",
+    "reviewer_explanation": "Answerable H-Net question was refused because the structured model output was invalid.",
+    "answer": "I cannot verify an answer from the approved papers: model response was not valid structured grounded output",
+    "citations": []
+  },
+  {
+    "request_id": "req-0e060425e69a",
+    "question_number": 11,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "How does Dynamic Chunking compare byte and BPE models?",
+    "expected_paper": "2507.07955",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Byte versus BPE comparison is cited to Dynamic Chunking.",
+    "answer": "Dynamic Chunking\u2019s H\u2011Net, when trained on raw bytes, outperforms a strong Transformer that operates on BPE tokens under matched compute and data budgets.",
+    "citations": [
+      {
+        "chunk_id": "2507_07955_v2_p01_c01",
+        "paper": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+        "arxiv_id": "2507.07955",
+        "version": 2,
+        "pdf_page": 1,
+        "section": "1\narXiv:2507.07955v2 [cs.LG] 15 Jul 2025"
+      }
+    ]
+  },
+  {
+    "request_id": "req-84c446d5a59d",
+    "question_number": 12,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "Which paper presents a full-duplex dialogue model?",
+    "expected_paper": "2410.00037",
+    "grade": "correct_cited",
+    "reviewer_explanation": "Correctly identifies Moshi as the full-duplex dialogue paper.",
+    "answer": "The paper \"Moshi: a speech\u2011text foundation model for real\u2011time dialogue\" presents a full\u2011duplex dialogue model.",
+    "citations": [
+      {
+        "chunk_id": "2410_00037_v1_p01_c01",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      },
+      {
+        "chunk_id": "2410_00037_v1_p01_c02",
+        "paper": "Moshi: a speech-text foundation model for real-time dialogue",
+        "arxiv_id": "2410.00037",
+        "version": 1,
+        "pdf_page": 1,
+        "section": "1\narXiv:2410.00037v1 [eess.AS] 17 Sep 2024"
+      }
+    ]
+  },
+  {
+    "request_id": "req-e1e331b5deba",
+    "question_number": 13,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What is the capital of France?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Capital of France is outside the approved corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-0eda156ce8e1",
+    "question_number": 14,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "Who is the current CEO of OpenAI?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Current CEO question is outside the approved corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-4ce8c0534577",
+    "question_number": 15,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "How do I configure Django REST Framework?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Django configuration question is outside the approved corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  },
+  {
+    "request_id": "req-ab9d00f2016f",
+    "question_number": 16,
+    "retrieval_setting": "C-medium-expanded",
+    "source": "groq",
+    "question": "What are my Groq account limits?",
+    "expected_paper": null,
+    "grade": "correct_refused",
+    "reviewer_explanation": "Personal Groq account limits are outside the approved corpus.",
+    "answer": "I cannot verify an answer from the approved papers: the model declined because the evidence was insufficient",
+    "citations": []
+  }
+]

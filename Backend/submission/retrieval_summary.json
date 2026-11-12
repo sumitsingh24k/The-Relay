@@ -1,0 +1,17 @@
+{
+  "A-small": {
+    "correct_cited": 10,
+    "wrong": 2,
+    "correct_refused": 4
+  },
+  "B-medium": {
+    "correct_cited": 11,
+    "wrong": 1,
+    "correct_refused": 4
+  },
+  "C-medium-expanded": {
+    "correct_cited": 10,
+    "wrong": 2,
+    "correct_refused": 4
+  }
+}

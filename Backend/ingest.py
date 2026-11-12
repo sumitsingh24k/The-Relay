@@ -118,8 +118,8 @@ def build_manifest() -> list[dict]:
     return verified
 
 
-def build_chunks(chunk_size: int = 500, overlap: int = 75) -> list[dict]:
-    """Extract page-aware chunks. Retrieval settings are applied later, not baked into this corpus."""
+def build_chunks(chunk_size: int = 500, overlap: int = 75, *, persist: bool = True) -> list[dict]:
+    """Extract page-aware chunks, keeping page/section metadata on every passage."""
     verified = build_manifest()
     chunks: list[dict] = []
     for paper in verified:
@@ -146,8 +146,9 @@ def build_chunks(chunk_size: int = 500, overlap: int = 75) -> list[dict]:
                             "content_sha256": paper["sha256"],
                         }
                     )
-    INDEX_DIR.mkdir(parents=True, exist_ok=True)
-    CHUNKS_PATH.write_text(json.dumps(chunks, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if persist:
+        INDEX_DIR.mkdir(parents=True, exist_ok=True)
+        CHUNKS_PATH.write_text(json.dumps(chunks, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return chunks
 
 

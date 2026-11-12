@@ -1,0 +1,43 @@
+{
+  "request_id": "req-e27339008534",
+  "status": "ok",
+  "answer": "512",
+  "citations": [
+    {
+      "chunk_id": "1706_03762_v7_p03_c01",
+      "paper": "Attention Is All You Need",
+      "arxiv_id": "1706.03762",
+      "version": 7,
+      "pdf_page": 3,
+      "section": "3.2\nAttention"
+    }
+  ],
+  "claims": [
+    {
+      "text": "The base Transformer model dimension (dmodel) is 512.",
+      "source_ids": [
+        "1706_03762_v7_p03_c01"
+      ]
+    }
+  ],
+  "refused": false,
+  "verification": {
+    "citation_integrity": true,
+    "claim_support": true,
+    "reason": "ok"
+  },
+  "question": "What is the base Transformer model dimension?",
+  "timing_ms": {
+    "model_ttft": 898.684,
+    "user_visible_ttft": 9035.843,
+    "total": 9035.843,
+    "model_total": 948.69
+  },
+  "usage": {
+    "tokens_in": 1153,
+    "tokens_out": 136
+  },
+  "retrieval_attempts": 1,
+  "retries": 0,
+  "retrieval_setting": "C-medium-expanded"
+}
