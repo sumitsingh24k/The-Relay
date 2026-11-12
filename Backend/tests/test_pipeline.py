@@ -3,7 +3,7 @@ import asyncio
 from pathlib import Path
 
 from ingest import CHUNKS_PATH, MANIFEST_PATH, REQUIRED_PAPERS, build_chunks, verify_paper
-from pipeline import ModelResult, retrieval_only_fallback, run_pipeline
+from pipeline import ModelResult, retrieval_only_fallback, run_pipeline, verify_claim_support
 from retrieve import BM25Retriever, SETTINGS
 from scheduler import AdmissionError, Scheduler, SchedulerConfig
 
@@ -102,6 +102,18 @@ def test_claim_support_rejects_an_unrelated_claim_with_a_real_citation():
     assert result["refused"]
 
 
+def test_claim_support_rejects_a_changed_number_and_an_unsupported_negation():
+    evidence = {"chunk_id": "e1", "text": "The base model uses d_model = 512 and uses attention."}
+    numeric_ok, numeric_reason = verify_claim_support(
+        [{"text": "The base model dimension is 4096.", "source_ids": ["e1"]}], [evidence]
+    )
+    negation_ok, negation_reason = verify_claim_support(
+        [{"text": "The base model does not use attention.", "source_ids": ["e1"]}], [evidence]
+    )
+    assert not numeric_ok and "number" in numeric_reason
+    assert not negation_ok and "negation" in negation_reason
+
+
 def test_retrieval_only_fallback_never_invents_a_model_answer():
     chunks = BM25Retriever(build_chunks(chunk_size=180, overlap=30)).retrieve_passages("Transformer")
     result = retrieval_only_fallback("What is a Transformer?", chunks, "test-fallback")
@@ -144,8 +156,22 @@ def test_scheduler_workers_process_a_queued_request():
         scheduler = Scheduler(SchedulerConfig(max_concurrency=1))
         await scheduler.start()
         try:
-            result = await scheduler.submit(lambda: asyncio.sleep(0, result="done"), __import__("time").monotonic() + 2)
-            assert result == "done"
+            result = await scheduler.submit(lambda: asyncio.sleep(0, result={"status": "ok"}), __import__("time").monotonic() + 2)
+            assert result["status"] == "ok"
+            assert result["scheduler_timing_ms"]["queue_wait"] >= 0
+            assert result["scheduler_timing_ms"]["working"] >= 0
         finally:
             await scheduler.stop()
+    asyncio.run(exercise())
+
+
+def test_scheduler_reconciles_reported_tokens_but_keeps_request_count():
+    async def exercise():
+        scheduler = Scheduler(SchedulerConfig(rpm=3, tpm=1_000, daily_requests=3, daily_tokens=1_000))
+        deadline = __import__("time").monotonic() + 2
+        await scheduler.admit(estimated_tokens=500, deadline_monotonic=deadline)
+        await scheduler.reconcile_tokens(500, 120)
+        assert scheduler._daily_requests == 1
+        assert scheduler._daily_tokens == 120
+        assert scheduler._tokens_this_minute == 120
     asyncio.run(exercise())

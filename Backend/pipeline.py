@@ -125,12 +125,28 @@ def verify_claim_support(claims: list[dict[str, Any]], chunks: list[dict[str, An
         if not claim_terms:
             return False, "claim has no verifiable content"
         evidence_terms: set[str] = set()
+        evidence_text = ""
         for source_id in claim["source_ids"]:
             evidence_terms |= _meaningful_terms(by_id[source_id]["text"])
+            evidence_text += " " + by_id[source_id]["text"].lower()
         overlap = len(claim_terms & evidence_terms) / len(claim_terms)
         # Lexical support is conservative but not synonym-blind. Source identity is checked separately above.
         if overlap < 0.15:
             return False, "citation exists but does not sufficiently support the claim"
+        # Lexical overlap alone can wrongly approve a contradictory numeric claim
+        # (for example, "512" changed to "4096"). Every stated number must occur
+        # in the cited evidence. This intentionally refuses number-normalization
+        # claims rather than guessing conversions.
+        claim_numbers = set(re.findall(r"\b\d+(?:\.\d+)?\b", claim["text"]))
+        evidence_numbers = set(re.findall(r"\b\d+(?:\.\d+)?\b", evidence_text))
+        if claim_numbers and not claim_numbers <= evidence_numbers:
+            return False, "citation does not support the claim's stated number"
+        # A source that never expresses a negation cannot safely support a newly
+        # introduced negative assertion. This is deliberately conservative.
+        claim_negations = {"no", "not", "never", "without", "cannot", "isnt", "doesnt", "dont"} & _meaningful_terms(claim["text"])
+        evidence_negations = {"no", "not", "never", "without", "cannot", "isnt", "doesnt", "dont"} & _meaningful_terms(evidence_text)
+        if claim_negations and not claim_negations <= evidence_negations:
+            return False, "citation does not support the claim's negation"
     return True, "ok"
 
 
@@ -187,6 +203,7 @@ async def run_pipeline(
             return result
 
     retries = 0
+    retry_wait_ms = 0.0
     while True:
         try:
             model_result = await client.generate(prompt_for(normalized, chunks))
@@ -200,13 +217,19 @@ async def run_pipeline(
                 raise DailyProviderBudgetError("provider daily budget exhausted") from error
             transient = status == 429 or (isinstance(status, int) and 500 <= status < 600)
             if not transient or retries >= MAX_MODEL_RETRIES:
+                # Preserve observed retry metadata even when the request ultimately
+                # fails, so CSV/trace error rows are not misleadingly recorded as 0.
+                setattr(error, "relay_retries", retries)
+                setattr(error, "relay_retry_wait_ms", round(retry_wait_ms, 3))
                 raise
             try:
                 wait_s = float(retry_after) if retry_after else 0.25 * (2**retries)
             except ValueError:
                 wait_s = 0.25 * (2**retries)
             # Bounded exponential backoff with jitter avoids synchronized retry storms.
-            await asyncio.sleep(wait_s + random.uniform(0, max(0.01, wait_s * 0.25)))
+            delay_s = wait_s + random.uniform(0, max(0.01, wait_s * 0.25))
+            await asyncio.sleep(delay_s)
+            retry_wait_ms += delay_s * 1000
             retries += 1
     draft = parse_draft(model_result.text)
     if draft is None:
@@ -242,5 +265,6 @@ async def run_pipeline(
     result["usage"] = {"tokens_in": model_result.tokens_in, "tokens_out": model_result.tokens_out}
     result["retrieval_attempts"] = attempt + 1
     result["retries"] = retries
+    result["retry_wait_ms"] = round(retry_wait_ms, 3)
     result["retrieval_setting"] = retrieval_setting
     return result

@@ -18,6 +18,7 @@ def append_result(result: dict, *, scenario: str, source: str, retries: int = 0,
         "source": source, "status": row["status"], "retries": row["retries"],
         "timing_ms": result.get("timing_ms", {}), "usage": result.get("usage", {}),
         "retrieval_setting": row["retrieval_setting"], "retrieval_attempts": result.get("retrieval_attempts"),
+        "scheduler_timing_ms": result.get("scheduler_timing_ms"), "retry_wait_ms": result.get("retry_wait_ms", 0),
         "verification": result.get("verification"), "fallback": result.get("fallback"),
     }
     with TRACE_PATH.open("a", encoding="utf-8") as f:

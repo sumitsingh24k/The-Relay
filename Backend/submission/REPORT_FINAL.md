@@ -44,9 +44,9 @@ I select **B-medium**. It was best on the same 16-question review: 11 correct ci
 
 ## How this library will mislead a naive retriever
 
-1. Shared generic words cause paper confusion: “base Transformer model dimension” originally pulled Moshi through `model`.
-2. Ambiguous latency questions have several valid numbers: “What latency does Moshi report?” can retrieve 80, 160, 240, or 640 ms in different contexts.
-3. Short names are weak queries: “What is H-Net?” has only `h`/`net`, making formatting and ranking fragile.
+1. Shared generic words cause paper confusion: "base Transformer model dimension" originally pulled Moshi through `model`.
+2. Ambiguous latency questions have several valid numbers: "What latency does Moshi report?" can retrieve 80, 160, 240, or 640 ms in different contexts.
+3. Short names are weak queries: "What is H-Net?" has only `h`/`net`, making formatting and ranking fragile.
 
 ## 6. Retries
 
@@ -62,8 +62,8 @@ My least certain assumption is that eight short real calibration calls represent
 
 ## Your feedback on Vaani
 
-Pending genuine user feedback in `VAANI_FEEDBACK_TEMPLATE.md`; it is not fabricated.
+The student explored Vaani and found Teacher AI and Memories especially useful: natural-language agent requirements, reviewable prompt changes, and retained call context reduce manual configuration and repeated customer information. Knowledge versus Memories and the Teacher AI readiness score were less clear. The suggested improvement is guided onboarding plus knowledge freshness/accuracy monitoring with version history and outdated-answer alerts.
 
 ## How I worked with the assistant
 
-Pending the student's real unedited conversation/export and reflection in `CONVERSATION_HISTORY_CHECKLIST.md`; it is not fabricated.
+The student used the assistant to explore concurrent-request architecture, evidence-grounded RAG, and failure/load testing. The student caught a retrieval bug in which a generic `model` title match pulled Moshi's 4096 dimension for a Transformer question; the bug was fixed and regression-tested. The student also chose not to force real Groq rate limits, using modest real measurements and controlled stand-in failure tests instead. The complete student reflection is retained in `CONVERSATION_HISTORY_CHECKLIST.md`.

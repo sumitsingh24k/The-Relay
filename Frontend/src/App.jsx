@@ -1,4 +1,74 @@
-import {useEffect,useState} from 'react'
-import {api} from './services/api'
+import { useEffect, useState } from 'react'
+import { Navbar } from './components/Navbar'
+import { StatusBadge } from './components/StatusBadge'
+import { Assistant } from './pages/Assistant'
+import { Dashboard } from './pages/Dashboard'
+import { api } from './services/api'
 import './App.css'
-export default function App(){const[page,setPage]=useState('Assistant'),[q,setQ]=useState(''),[messages,setMessages]=useState([]),[docs,setDocs]=useState([]),[health,setHealth]=useState(null),[metrics,setMetrics]=useState(null),[busy,setBusy]=useState(false),[err,setErr]=useState(''),[source,setSource]=useState(null);const refresh=()=>{api.health().then(setHealth).catch(()=>setHealth({backend:'offline'}));api.documents().then(x=>setDocs(x.documents)).catch(()=>{});api.metrics().then(setMetrics).catch(()=>{})};useEffect(refresh,[]);async function send(){if(!q.trim()||busy)return;const text=q.trim(),previous=messages.filter(x=>x.role==='user').at(-1)?.text||'';setQ('');setBusy(true);setErr('');setMessages(x=>[...x,{role:'user',text}]);try{const r=await api.chat(text,previous);setMessages(x=>[...x,{role:'assistant',...r}]);setSource(r.citations?.[0]||null);refresh()}catch(e){setErr(e.status===429?'Provider rate-limited. Please retry after reset.':e.message)}finally{setBusy(false)}}const nav=['Assistant','Documents','Performance','System Status'],m=metrics?.metrics||{};return <div className="shell"><aside><b className="brand">RELAY<span>•</span></b><button className="new" onClick={()=>setMessages([])}>＋ New chat</button><nav>{nav.map(x=><button className={page===x?'active':''} onClick={()=>setPage(x)} key={x}>{x}</button>)}</nav><div className="recent"><small>RECENT</small>{messages.filter(x=>x.role==='user').slice(-4).map((x,i)=><p key={i}>{x.text}</p>)}</div></aside><main><header><div><small>RESEARCH WORKSPACE</small><h1>{page}</h1></div><span className={`pill ${health?.backend==='healthy'?'ok':''}`}>{health?.backend||'Connecting'}</span></header>{page==='Assistant'&&<section className="assistant"><div className="chat">{!messages.length&&<div className="welcome"><h2>Ask the research library</h2><p>Verified answers from three approved papers.</p></div>}{messages.map((m,i)=><article className={`message ${m.role}`} key={i}><b>{m.role==='user'?'You':'Relay'}</b><p>{m.text||m.answer}</p>{m.role==='assistant'&&<><small>{m.refused?'SAFE REFUSAL':'VERIFIED EVIDENCE'} · {m.verification?.reason}</small><div>{m.citations?.map(c=><button className="citation" onClick={()=>setSource(c)} key={c.chunk_id}>{c.paper} · p.{c.pdf_page}</button>)}</div></>}</article>)}{busy&&<article className="message assistant"><b>Relay</b><p>Checking evidence…</p></article>}{err&&<div className="error">{err}</div>}<div className="composer"><textarea value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}}} placeholder="Ask about the research papers…"/><button onClick={send} disabled={!q.trim()||busy}>Send</button></div></div><aside className="sources"><h3>Sources context</h3>{source?<><b>{source.paper}</b><p>arXiv:{source.arxiv_id}v{source.version}</p><p>Page {source.pdf_page}</p><p>{source.section}</p></>:<p>Select a citation to inspect its trusted metadata.</p>}</aside></section>}{page==='Documents'&&<section className="cards">{docs.map(d=><article key={d.arxiv_id}><span className="pill ok">Verified</span><h2>{d.title}</h2><p>arXiv:{d.arxiv_id}v{d.version}</p><p>{d.page_count} pages · indexed corpus</p></article>)}</section>}{page==='Performance'&&<section className="empty"><h2>Measured performance</h2><p>{metrics?.note||`${metrics?.sample_count||0} actual request records`}</p><div className="grid">{[['Requests',m.total_requests],['p50 latency',m.p50_ms],['p95 latency',m.p95_ms],['TTFT',m.ttft_p50_ms],['Rate limits',m.rate_limit_events],['Retries',m.retry_count]].map(([x,v])=><article key={x}><small>{x}</small><strong>{v??'—'}{x.includes('latency')||x==='TTFT'?(v==null?'':' ms'):''}</strong></article>)}</div></section>}{page==='System Status'&&<section className="cards">{health&&Object.entries(health).map(([k,v])=><article key={k}><small>{k.toUpperCase()}</small><h2>{v}</h2></article>)}</section>}</main></div>}
+
+const navigation = ['Assistant', 'Documents', 'Performance', 'System Status']
+
+export default function App() {
+  const [page, setPage] = useState('Assistant')
+  const [question, setQuestion] = useState('')
+  const [messages, setMessages] = useState([])
+  const [documents, setDocuments] = useState([])
+  const [health, setHealth] = useState(null)
+  const [metrics, setMetrics] = useState(null)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  const [source, setSource] = useState(null)
+
+  const refresh = () => {
+    api.health().then(setHealth).catch(() => setHealth({ backend: 'offline' }))
+    api.documents().then(({ documents: items }) => setDocuments(items)).catch(() => {})
+    api.metrics().then(setMetrics).catch(() => {})
+  }
+
+  useEffect(() => { refresh() }, [])
+
+  const startNewChat = () => {
+    setMessages([])
+    setSource(null)
+    setError('')
+  }
+
+  async function sendQuestion() {
+    if (!question.trim() || busy) return
+    const text = question.trim()
+    const previousQuestion = messages.filter((message) => message.role === 'user').at(-1)?.text || ''
+    setQuestion('')
+    setBusy(true)
+    setError('')
+    setMessages((current) => [...current, { role: 'user', text }])
+
+    try {
+      const response = await api.chat(text, previousQuestion)
+      setMessages((current) => [...current, { role: 'assistant', ...response }])
+      setSource(response.citations?.[0] || null)
+      refresh()
+    } catch (requestError) {
+      setError(requestError.status === 429
+        ? 'Provider rate-limited. Please retry after the reset period.'
+        : requestError.message)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="shell">
+      <Navbar activePage={page} items={navigation} messages={messages} onNewChat={startNewChat} onNavigate={setPage} />
+      <main>
+        <header>
+          <div><small>RESEARCH WORKSPACE</small><h1>{page}</h1></div>
+          <StatusBadge status={health?.backend} />
+        </header>
+        {page === 'Assistant' ? (
+          <Assistant busy={busy} error={error} messages={messages} onQuestionChange={setQuestion} onSend={sendQuestion}
+            onSourceSelect={setSource} question={question} source={source} />
+        ) : <Dashboard documents={documents} health={health} metrics={metrics} page={page} />}
+      </main>
+    </div>
+  )
+}

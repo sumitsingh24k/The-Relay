@@ -1,7 +1,37 @@
+
+# Python virtual environment
 .venv/
+venv/
+
+# Python cache
 __pycache__/
-.pytest_cache/
 *.py[cod]
-Frontend/node_modules/
-Frontend/dist/
-Backend/.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node.js dependencies
+**/node_modules/
+
+# Build files
+**/dist/
+**/build/
+**/.next/
+**/.vite/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# IDE settings (optional)
+# .vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

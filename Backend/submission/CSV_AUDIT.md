@@ -3,7 +3,7 @@
 ## Schema
 
 Expected columns and raw columns match exactly: `True`.
-Raw rows: 379. Malformed rows: 0.
+Raw rows: 386. Malformed rows: 0.
 
 ## Integrity findings
 
@@ -12,16 +12,20 @@ The clean copy has unique IDs; 18 later duplicate occurrences received a `-dupli
 
 ## Missing values
 
-- `first_token_ms`: 309
-- `total_ms`: 172
-- `tokens_in`: 307
-- `tokens_out`: 194
-- `answer_grade`: 379
+- `first_token_ms`: 315
+- `total_ms`: 174
+- `tokens_in`: 314
+- `tokens_out`: 197
+- `answer_grade`: 386
 
 Missing token values are expected for the local stand-in and retrieval-only fallbacks because neither reports Groq token usage. Missing TTFT occurs for buffered refusals/errors and older rows created before the distinction was logged.
 
 ## Scenario coverage
 
+- `audit_429_after_fix`: 2 raw rows
+- `audit_controlled_429`: 2 raw rows
+- `audit_controlled_daily`: 2 raw rows
+- `audit_controlled_normal`: 1 raw rows
 - `burst`: 25 raw rows
 - `daily_budget_exhausted`: 34 raw rows
 - `groq_baseline`: 8 raw rows

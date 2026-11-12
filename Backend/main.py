@@ -21,6 +21,14 @@ async def lifespan(_app):
 app=FastAPI(title="Relay", lifespan=lifespan)
 app.add_middleware(CORSMiddleware,allow_origins=["http://localhost:5173","http://127.0.0.1:5173"],allow_methods=["*"],allow_headers=["*"])
 class ChatRequest(BaseModel): question:str; context:str=""; source:str="groq"; retrieval_setting:str="B-medium"; scenario:str="interactive"
+class QuotaTrackedClient:
+ def __init__(self, client, deadline: float, estimated_tokens: int=1000): self.client,self.deadline,self.estimated_tokens=client,deadline,estimated_tokens
+ async def generate(self,messages):
+  await SCHEDULER.admit(self.estimated_tokens,self.deadline)
+  result=await self.client.generate(messages)
+  actual=(result.tokens_in or 0)+(result.tokens_out or 0)
+  await SCHEDULER.reconcile_tokens(self.estimated_tokens,actual if actual else None)
+  return result
 @app.get('/health')
 def health(): return {"backend":"healthy","retrieval":"ready","scheduler":SCHEDULER.mode(),"groq":"configured","standin":"not_checked","queue_depth":SCHEDULER.queue.qsize(),"peak_queue_length":SCHEDULER.peak_queue_length,"scheduler_config":SCHEDULER.config.__dict__,"daily_usage":{"requests":SCHEDULER._daily_requests,"estimated_tokens":SCHEDULER._daily_tokens}}
 @app.get('/documents')
@@ -34,14 +42,16 @@ def metrics():
  rows=read_rows();return {"sample_count":len(rows),"metrics":summarize(rows),"note":"No measurements are available until actual requests or load tests are run." if not rows else None}
 @app.post('/chat')
 async def chat(r:ChatRequest):
+ request_id=f"api-error-{int(time.time()*1000)}"
  try:
   deadline=time.monotonic()+30
-  await SCHEDULER.admit(estimated_tokens=1000,deadline_monotonic=deadline)
   # Resolve short follow-ups ("where can I use this?") using only the preceding user topic.
   effective_question = f"Previous topic: {r.context}\nFollow-up: {r.question}" if r.context.strip() else r.question
   # Pressure mode skips semantic re-ranking and retrieves fewer passages while retaining verification.
   selected_setting = "A-small" if SCHEDULER.mode() == "pressured" else r.retrieval_setting
-  async def work(): return await run_pipeline(effective_question,StandInClient() if r.source=='standin' else GroqClient(),BM25Retriever(),selected_setting)
+  async def work():
+   provider=StandInClient() if r.source=='standin' else GroqClient()
+   return await run_pipeline(effective_question,QuotaTrackedClient(provider,deadline),BM25Retriever(),selected_setting)
   result=await SCHEDULER.submit(work,deadline)
   append_result(result,scenario=r.scenario,source=r.source)
   return result
@@ -59,6 +69,13 @@ async def chat(r:ChatRequest):
    append_result(result,scenario=r.scenario,source='retrieval_only')
    return result
   status=429 if e.code in {'minute_budget','daily_budget','queue_full'} else 408
+  append_result({"request_id":request_id,"status":"rate_limited" if status == 429 else "timeout","timing_ms":{},"usage":{},"retries":0,"retrieval_setting":r.retrieval_setting},scenario=r.scenario,source=r.source)
   raise HTTPException(status,e.args[0]) from e
- except RuntimeError as e:raise HTTPException(503,str(e)) from e
- except ValueError as e:raise HTTPException(400,str(e)) from e
+ except RuntimeError as e:
+  provider_status=getattr(e,'status_code',None)
+  status=429 if provider_status == 429 else 503
+  append_result({"request_id":request_id,"status":"rate_limited" if status == 429 else "error","timing_ms":{},"usage":{},"retries":getattr(e,'relay_retries',0),"retry_wait_ms":getattr(e,'relay_retry_wait_ms',0),"scheduler_timing_ms":getattr(e,'scheduler_timing_ms',None),"retrieval_setting":r.retrieval_setting},scenario=r.scenario,source=r.source)
+  raise HTTPException(status,str(e)) from e
+ except ValueError as e:
+  append_result({"request_id":request_id,"status":"error","timing_ms":{},"usage":{},"retries":0,"retrieval_setting":r.retrieval_setting},scenario=r.scenario,source=r.source)
+  raise HTTPException(400,str(e)) from e

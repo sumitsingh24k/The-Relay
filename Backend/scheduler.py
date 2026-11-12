@@ -36,6 +36,7 @@ class QueuedWork:
     work: Callable[[], Awaitable]
     deadline_monotonic: float
     future: asyncio.Future
+    enqueued_monotonic: float
 
 
 class Scheduler:
@@ -96,7 +97,7 @@ class Scheduler:
         if self.queue.full():
             raise AdmissionError("queue_full", "bounded queue is full")
         future = asyncio.get_running_loop().create_future()
-        self.queue.put_nowait(QueuedWork(work, deadline_monotonic, future))
+        self.queue.put_nowait(QueuedWork(work, deadline_monotonic, future, time.monotonic()))
         self.peak_queue_length = max(self.peak_queue_length, self.queue.qsize())
         try:
             return await asyncio.wait_for(asyncio.shield(future), timeout=max(0.001, deadline_monotonic - time.monotonic()))
@@ -111,10 +112,20 @@ class Scheduler:
             try:
                 if job.future.cancelled():
                     continue
+                started = time.monotonic()
                 result = await self.execute(job.work, job.deadline_monotonic)
+                if isinstance(result, dict):
+                    result["scheduler_timing_ms"] = {
+                        "queue_wait": round((started - job.enqueued_monotonic) * 1000, 3),
+                        "working": round((time.monotonic() - started) * 1000, 3),
+                    }
                 if not job.future.done():
                     job.future.set_result(result)
             except Exception as error:
+                setattr(error, "scheduler_timing_ms", {
+                    "queue_wait": round((started - job.enqueued_monotonic) * 1000, 3),
+                    "working": round((time.monotonic() - started) * 1000, 3),
+                })
                 if not job.future.done():
                     job.future.set_exception(error)
             finally:
@@ -139,6 +150,21 @@ class Scheduler:
             self._tokens_this_minute += estimated_tokens
             self._daily_requests += 1
             self._daily_tokens += estimated_tokens
+            self._save_daily_state()
+
+    async def reconcile_tokens(self, reserved_tokens: int, actual_tokens: int | None) -> None:
+        """Replace a successful provider call's estimate with reported actual usage.
+
+        A provider that does not return usage (the stand-in) remains conservatively
+        charged at the reservation amount.  Request counts are never decremented:
+        every attempted provider call still consumes an RPM/RPD slot.
+        """
+        if actual_tokens is None:
+            return
+        async with self._lock:
+            adjustment = max(0, reserved_tokens) - max(0, actual_tokens)
+            self._tokens_this_minute = max(0, self._tokens_this_minute - adjustment)
+            self._daily_tokens = max(0, self._daily_tokens - adjustment)
             self._save_daily_state()
 
     async def enqueue(self, item: object, deadline_monotonic: float) -> None:
